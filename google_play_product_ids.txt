@@ -1,0 +1,86 @@
+# Google Play Console Product IDs for LuWAy App
+# Copy these Product IDs to your Google Play Console under Monetization > Products
+# IMPORTANT: Use EXACTLY these IDs in your app - they are case-sensitive!
+
+## SUBSCRIPTION PRODUCT IDs
+luway_premium_monthly      # $4.99/month - Premium Monthly Subscription
+luway_premium_annual       # $39.99/year - Premium Annual Subscription  
+luway_premium_lifetime     # $99.99 - Premium Lifetime Subscription
+
+## BOOST PRODUCT IDs (All $0.99 USD, 7 days duration)
+
+# Basic Functionality Boosts
+luway_boost_renew_ad       # Ad Renewal - Refresh listing timestamp
+luway_boost_colored_frame  # Colored Frame - Add colored border to listing
+luway_boost_top_brand      # Top Brand/Model - Featured in brand listings
+luway_boost_top_recommended # Top Recommended - Featured in recommendations
+luway_boost_push_notification # Push Notification - Send to interested users
+luway_boost_local_boost    # Local Boost - Enhanced local visibility
+luway_boost_label_tags     # Label Tags - Sale, Best Price, etc.
+luway_boost_animated_border # Animated Border - Shimmer/pulse effect
+
+# 🔖 Badge Boosts (Classic badges)
+luway_boost_new_badge      # Green "NEW" label in corner
+luway_boost_sale_badge     # Red discount percentage label  
+luway_boost_negotiable_badge # Yellow "NEGOTIABLE" label
+luway_boost_delivery_badge # Blue "DELIVERY" badge with truck icon
+luway_boost_popular_badge  # Purple "POPULAR" tag for high-engagement listings
+
+# 🟩 Border/Outline Boosts
+luway_boost_colored_border # Simple colored border (blue theme)
+luway_boost_animated_glow  # Glowing aura effect around listing card
+
+# ⚡ Dynamic/Impact Boosts  
+luway_boost_pulsing_card   # Subtle scale pulsing effect (0.95x to 1.05x)
+luway_boost_shimmer_label  # Shimmer effect sweep across listing
+luway_boost_bounce_on_load # Bounce animation when listing loads
+
+# 🧩 Creative/Special Boosts
+luway_boost_triangular_card # Triangular corner cut-out with "Hot!" text
+luway_boost_orbital_star   # Small star orbiting around listing corners
+luway_boost_hologram_effect # Animated gradient hologram background
+luway_boost_light_ray      # Diagonal light ray sweep effect
+luway_boost_floating_3d_badge # 3D floating badge with shadow
+luway_boost_torn_label     # Torn paper effect label "Limited Offer"
+luway_boost_handdrawn_sticker # Hand-drawn style sticker overlay
+
+## USER UNBLOCK PRODUCT ID
+luway_unblock_user         # $9.99 - Unblock User Account
+
+## GOOGLE PLAY CONSOLE SETUP INSTRUCTIONS:
+1. Go to Google Play Console > Your App > Monetization > Products
+2. Create "Subscriptions" for premium tiers:
+   - luway_premium_monthly ($4.99/month)
+   - luway_premium_annual ($39.99/year) 
+   - luway_premium_lifetime ($99.99 one-time)
+3. Create "Managed products" (one-time purchases) for each boost ($0.99 each)
+4. Create "Managed product" for user unblock ($9.99)
+5. Set up pricing templates for different countries
+6. Add detailed descriptions for each product
+7. Test purchases in internal testing track before publishing
+8. Use these EXACT Product IDs in your app's GooglePlayPurchaseService
+
+## BOOST CATEGORIES FOR ORGANIZATION:
+- Basic Functionality: renew_ad, colored_frame, label_tags, animated_border
+- Positioning: top_brand, top_recommended, local_boost, push_notification  
+- Visual Effects: colored_border, animated_glow, pulsing_card, shimmer_label
+- Special Effects: triangular_card, orbital_star, hologram_effect, light_ray
+- Badges: new_badge, sale_badge, negotiable_badge, delivery_badge, popular_badge
+- Premium Effects: floating_3d_badge, torn_label, handdrawn_sticker, bounce_on_load
+
+## RECOMMENDED PRICING STRATEGY:
+- Boosts: $0.99 USD (accessible to most users)
+- Monthly Premium: $4.99 USD (competitive with similar apps)
+- Annual Premium: $39.99 USD (20% discount vs monthly)
+- Lifetime Premium: $99.99 USD (premium one-time option)
+- User Unblock: $9.99 USD (penalty fee for violations)
+
+## TESTING CHECKLIST:
+- [ ] All product IDs created in Google Play Console
+- [ ] Pricing set for all regions
+- [ ] Internal testing track configured
+- [ ] Test purchases work in debug mode
+- [ ] Purchase verification implemented
+- [ ] Restore purchases functionality working
+- [ ] Error handling for failed purchases
+- [ ] Receipt validation on backend

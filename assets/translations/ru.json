@@ -1,0 +1,113 @@
+{
+  "app": {
+    "name": "LuWay"
+  },
+  "common": {
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "loading": "Загрузка...",
+    "success": "Успех",
+    "error": "Ошибка",
+    "retry": "Повторить",
+    "confirm": "Подтвердить",
+    "search": "Поиск",
+    "noResults": "Результаты не найдены",
+    "close": "Закрыть",
+    "back": "Назад",
+    "next": "Далее",
+    "done": "Готово",
+    "yes": "Да",
+    "no": "Нет",
+    "send": "Отправить",
+    "submit": "Отправить",
+    "try_again": "Попробовать снова",
+    "continue": "Продолжить"
+  },
+  "auth": {
+    "login": "Вход",
+    "register": "Регистрация",
+    "forgotPassword": "Забыли пароль?",
+    "email": "Эл. почта",
+    "password": "Пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "fullName": "Полное имя",
+    "loginWithGoogle": "Войти через Google",
+    "noAccount": "Нет аккаунта?",
+    "haveAccount": "Уже есть аккаунт?",
+    "signUp": "Регистрация",
+    "signIn": "Вход",
+    "signOut": "Выход",
+    "createAccount": "Создать аккаунт",
+    "welcomeMessage": "Войдите, чтобы связаться с владельцами автомобилей",
+    "continueAsGuest": "Продолжить как гость",
+    "guestMode": "Гостевой режим",
+    "guestMessage": "В гостевом режиме вы можете искать номерные знаки, но не можете добавлять свои автомобили.",
+    "signInToAdd": "Войдите, чтобы добавить автомобили",
+    "exitGuest": "Выйти из гостевого режима"
+  },
+  "profile": {
+    "title": "Профиль",
+    "editProfile": "Редактировать профиль",
+    "settings": "Настройки",
+    "displayName": "Отображаемое имя",
+    "updateProfile": "Обновить профиль",
+    "profileUpdated": "Профиль успешно обновлен"
+  },
+  "vehicle": {
+    "plateNumber": "Номер автомобиля",
+    "brand": "Марка",
+    "model": "Модель",
+    "country": "Страна",
+    "owner": "Владелец",
+    "myPlates": "Мои номера",
+    "noPlates": "Нет автомобильных номеров",
+    "addPlate": "Добавить номер",
+    "addFirstVehicle": "Добавьте свой первый автомобиль, чтобы начать",
+    "scanLicensePlate": "Сканировать номер",
+    "enterManually": "Ввести вручную",
+    "vehicleDetails": "Детали автомобиля",
+    "contactOwner": "Связаться с владельцем",
+    "enterLicensePlate": "Введите номерной знак",
+    "deleteConfirm": "Вы уверены, что хотите удалить {plate}?",
+    "plateDeleted": "Номерной знак удален"
+  },
+  "search": {
+    "title": "Поиск",
+    "scanToSearch": "Сканировать для поиска",
+    "noResults": "Номера с таким номером не найдены",
+    "foundResults": "Найдено {count} результатов",
+    "searchPlateHint": "Введите номер автомобиля",
+    "licensePlateDetected": "Номерной знак обнаружен",
+    "noPlateFound": "Номерной знак не найден",
+    "couldNotDetect": "Не удалось обнаружить номерной знак. Пожалуйста, попробуйте снова или введите номер вручную.",
+    "positionPlate": "Расположите номерной знак в рамке",
+    "minimumChars": "Введите не менее 2 символов",
+    "yourCar": "ВАША МАШИНА",
+    "multipleResults": "Найдено несколько автомобилей"
+  },
+  "map": {
+    "title": "Карта"
+  },
+  "messages": {
+    "title": "Сообщения",
+    "calling": "Звоним...",
+    "incomingCall": "Входящий звонок",
+    "callEnded": "Звонок завершен",
+    "connected": "Соединено"
+  },
+  "settings": {
+    "title": "Настройки",
+    "appTheme": "Тема приложения",
+    "darkMode": "Темная тема",
+    "lightMode": "Светлая тема",
+    "language": "Язык",
+    "notifications": "Уведомления",
+    "privacyPolicy": "Политика конфиденциальности",
+    "about": "О приложении"
+  },
+  "home": {
+    "title": "Главная"
+  }
+}

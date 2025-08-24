@@ -1,0 +1,110 @@
+{
+  "app": {
+    "name": "LuWay"
+  },
+  "common": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "loading": "Cargando...",
+    "success": "Éxito",
+    "error": "Error",
+    "retry": "Reintentar",
+    "confirm": "Confirmar",
+    "search": "Buscar",
+    "noResults": "No se encontraron resultados",
+    "close": "Cerrar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "done": "Hecho",
+    "yes": "Sí",
+    "no": "No",
+    "send": "Enviar",
+    "submit": "Enviar",
+    "try_again": "Intentar de Nuevo",
+    "continue": "Continuar"
+  },
+  "auth": {
+    "login": "Iniciar Sesión",
+    "register": "Registrarse",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "fullName": "Nombre Completo",
+    "loginWithGoogle": "Iniciar Sesión con Google",
+    "noAccount": "¿No tienes una cuenta?",
+    "haveAccount": "¿Ya tienes una cuenta?",
+    "signUp": "Registrarse",
+    "signIn": "Iniciar Sesión",
+    "signOut": "Cerrar Sesión",
+    "createAccount": "Crear Cuenta",
+    "welcomeMessage": "Inicia sesión para conectarte con dueños de autos",
+    "continueAsGuest": "Continuar como Invitado",
+    "guestMode": "Modo Invitado",
+    "guestMessage": "Como usuario invitado, puedes buscar placas pero no puedes agregar tus propios vehículos.",
+    "signInToAdd": "Inicia sesión para agregar vehículos",
+    "exitGuest": "Salir del Modo Invitado"
+  },
+  "profile": {
+    "title": "Perfil",
+    "editProfile": "Editar Perfil",
+    "settings": "Configuración",
+    "displayName": "Nombre de Visualización",
+    "updateProfile": "Actualizar Perfil",
+    "profileUpdated": "Perfil actualizado exitosamente"
+  },
+  "vehicle": {
+    "plateNumber": "Número de Placa",
+    "brand": "Marca",
+    "model": "Modelo",
+    "country": "País",
+    "owner": "Propietario",
+    "myPlates": "Mis Placas",
+    "noPlates": "Sin Placas Todavía",
+    "addPlate": "Agregar Placa",
+    "addFirstVehicle": "Agrega tu primer vehículo para comenzar",
+    "scanLicensePlate": "Escanear Placa",
+    "enterManually": "Ingresar Manualmente",
+    "vehicleDetails": "Detalles del Vehículo",
+    "contactOwner": "Contactar Propietario",
+    "enterLicensePlate": "Ingresar Número de Placa",
+    "deleteConfirm": "¿Estás seguro de que quieres eliminar {plate}?",
+    "plateDeleted": "Placa eliminada"
+  },
+  "search": {
+    "title": "Buscar",
+    "scanToSearch": "Escanear para Buscar",
+    "noResults": "No se encontraron placas con este número",
+    "foundResults": "Se encontraron {count} resultados",
+    "searchPlateHint": "Ingresa número de placa",
+    "licensePlateDetected": "Placa Detectada",
+    "noPlateFound": "No se Encontró Placa",
+    "couldNotDetect": "No se pudo detectar una placa. Por favor, intenta de nuevo o ingresa el número manualmente.",
+    "positionPlate": "Posiciona la placa dentro del marco"
+  },
+  "map": {
+    "title": "Mapa"
+  },
+  "messages": {
+    "title": "Mensajes",
+    "calling": "Llamando...",
+    "incomingCall": "Llamada Entrante",
+    "callEnded": "Llamada Terminada",
+    "connected": "Conectado"
+  },
+  "settings": {
+    "title": "Configuración",
+    "appTheme": "Tema de la Aplicación",
+    "darkMode": "Modo Oscuro",
+    "lightMode": "Modo Claro",
+    "language": "Idioma",
+    "notifications": "Notificaciones",
+    "privacyPolicy": "Política de Privacidad",
+    "about": "Acerca de"
+  },
+  "home": {
+    "title": "Inicio"
+  }
+}
