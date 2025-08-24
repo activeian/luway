@@ -1,0 +1,19 @@
+{
+  "name": "luway-app",
+  "version": "1.0.0",
+  "description": "LuWay application with notification server",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "cd server && npm install && node server.js",
+    "build": "cd server && npm install",
+    "dev": "cd server && npm run dev"
+  },
+  "keywords": [
+    "flutter",
+    "firebase",
+    "notifications",
+    "luway"
+  ],
+  "author": "LuWay Team",
+  "license": "MIT"
+}
