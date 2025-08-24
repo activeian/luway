@@ -1,3 +1,8 @@
+console.log('🚀 Starting LuWay Notification Server...');
+console.log('📁 Current working directory:', process.cwd());
+console.log('🌍 Environment:', process.env.NODE_ENV || 'development');
+console.log('🔧 Port configured:', process.env.PORT || 3001);
+
 const admin = require('firebase-admin');
 const express = require('express');
 const cors = require('cors');
@@ -18,6 +23,8 @@ let firebaseInitialized = false;
 try {
   let serviceAccount;
   
+  console.log('🔐 Attempting to load Firebase credentials...');
+  
   // Try environment variables first, then fall back to file
   if (process.env.FIREBASE_PRIVATE_KEY && process.env.FIREBASE_CLIENT_EMAIL) {
     serviceAccount = {
@@ -28,11 +35,21 @@ try {
     };
     console.log('✅ Firebase credentials loaded from environment variables');
   } else {
+    console.log('🔍 Checking for service account file...');
     try {
-      serviceAccount = require('./service-account-key.json');
-      console.log('✅ Service account key found in file');
+      // Try current directory first, then server directory
+      let serviceAccountPath = './service-account-key.json';
+      try {
+        serviceAccount = require(serviceAccountPath);
+        console.log('✅ Service account key found in root directory');
+      } catch (e) {
+        console.warn('⚠️ No Firebase credentials found, running in demo mode');
+        console.warn('Error:', e.message);
+        serviceAccount = null;
+      }
     } catch (e) {
       console.warn('⚠️ No Firebase credentials found, running in demo mode');
+      console.warn('Error:', e.message);
       serviceAccount = null;
     }
   }
@@ -583,4 +600,16 @@ process.on('SIGINT', () => {
 process.on('SIGTERM', () => {
   console.log('🛑 Shutting down notification server...');
   process.exit(0);
+});
+
+// Global error handlers
+process.on('uncaughtException', (error) => {
+  console.error('💥 Uncaught Exception:', error);
+  console.error('Stack:', error.stack);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('💥 Unhandled Rejection at:', promise, 'reason:', reason);
+  process.exit(1);
 });
