@@ -544,7 +544,7 @@ cron.schedule('0 0 2 * * *', () => {
 });
 
 // Start server
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 LuWay Notification Server running on port ${PORT}`);
   console.log(`📱 Environment: ${process.env.NODE_ENV || 'development'}`);
   console.log(`🔥 Firebase: ${firebaseInitialized ? 'Connected' : 'Demo Mode'}`);
