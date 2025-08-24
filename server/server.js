@@ -17,12 +17,24 @@ let firebaseInitialized = false;
 
 try {
   let serviceAccount;
-  try {
-    serviceAccount = require('./service-account-key.json');
-    console.log('✅ Service account key found');
-  } catch (e) {
-    console.warn('⚠️ Service account key not found, running in demo mode');
-    serviceAccount = null;
+  
+  // Try environment variables first, then fall back to file
+  if (process.env.FIREBASE_PRIVATE_KEY && process.env.FIREBASE_CLIENT_EMAIL) {
+    serviceAccount = {
+      type: "service_account",
+      project_id: process.env.FIREBASE_PROJECT_ID || "bipcar-7464a",
+      private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+      client_email: process.env.FIREBASE_CLIENT_EMAIL,
+    };
+    console.log('✅ Firebase credentials loaded from environment variables');
+  } else {
+    try {
+      serviceAccount = require('./service-account-key.json');
+      console.log('✅ Service account key found in file');
+    } catch (e) {
+      console.warn('⚠️ No Firebase credentials found, running in demo mode');
+      serviceAccount = null;
+    }
   }
   
   if (serviceAccount && serviceAccount.private_key && serviceAccount.private_key !== "-----BEGIN PRIVATE KEY-----\nTEST_PRIVATE_KEY\n-----END PRIVATE KEY-----\n") {
