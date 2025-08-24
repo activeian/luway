@@ -13,37 +13,34 @@ app.use(express.json());
 
 // Initialize Firebase Admin SDK
 let db, messaging;
+let firebaseInitialized = false;
+
 try {
   let serviceAccount;
   try {
     serviceAccount = require('./service-account-key.json');
+    console.log('✅ Service account key found');
   } catch (e) {
-    console.warn('⚠️ Service account key not found, running in test mode');
-    // Create a mock service account for testing
-    serviceAccount = {
-      type: "service_account",
-      project_id: process.env.FIREBASE_PROJECT_ID || 'bipcar-7464a',
-      private_key_id: "test-key-id",
-      private_key: "-----BEGIN PRIVATE KEY-----\nTEST_PRIVATE_KEY\n-----END PRIVATE KEY-----\n",
-      client_email: "test@test.iam.gserviceaccount.com",
-      client_id: "test-client-id",
-      auth_uri: "https://accounts.google.com/o/oauth2/auth",
-      token_uri: "https://oauth2.googleapis.com/token"
-    };
+    console.warn('⚠️ Service account key not found, running in demo mode');
+    serviceAccount = null;
   }
   
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    projectId: process.env.FIREBASE_PROJECT_ID || 'bipcar-7464a'
-  });
-  
-  db = admin.firestore();
-  messaging = admin.messaging();
-  console.log('✅ Firebase Admin initialized successfully');
+  if (serviceAccount && serviceAccount.private_key && serviceAccount.private_key !== "-----BEGIN PRIVATE KEY-----\nTEST_PRIVATE_KEY\n-----END PRIVATE KEY-----\n") {
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+      projectId: process.env.FIREBASE_PROJECT_ID || serviceAccount.project_id
+    });
+    
+    db = admin.firestore();
+    messaging = admin.messaging();
+    firebaseInitialized = true;
+    console.log('✅ Firebase Admin initialized successfully');
+  } else {
+    console.log('📝 Running in demo mode without Firebase Admin');
+  }
 } catch (error) {
   console.error('❌ Error initializing Firebase Admin:', error);
-  console.log('📝 Running in limited mode without Firebase Admin');
-  // Don't exit, just log warnings for notification endpoints
+  console.log('📝 Running in demo mode without Firebase Admin');
 }
 
 // Notification service functions
@@ -54,8 +51,8 @@ class NotificationServer {
     try {
       console.log('🔔 Checking for pending notifications...');
       
-      if (!db) {
-        console.log('⚠️ Database not available, skipping notification check');
+      if (!firebaseInitialized || !db) {
+        console.log('⚠️ Firebase not initialized, skipping notification check');
         return;
       }
       
@@ -179,8 +176,8 @@ class NotificationServer {
     try {
       console.log('📊 Starting daily summary notifications...');
       
-      if (!db) {
-        console.log('⚠️ Database not available, skipping daily summary');
+      if (!firebaseInitialized || !db) {
+        console.log('⚠️ Firebase not initialized, skipping daily summary');
         return;
       }
       
@@ -270,8 +267,8 @@ class NotificationServer {
     try {
       console.log('🧹 Cleaning old notifications...');
       
-      if (!db) {
-        console.log('⚠️ Database not available, skipping cleanup');
+      if (!firebaseInitialized || !db) {
+        console.log('⚠️ Firebase not initialized, skipping cleanup');
         return;
       }
       
@@ -303,11 +300,21 @@ class NotificationServer {
 }
 
 // API Endpoints
+app.get('/', (req, res) => {
+  res.json({
+    message: 'LuWay Notification Server',
+    status: 'running',
+    firebase: firebaseInitialized ? 'connected' : 'demo-mode',
+    endpoints: ['/health', '/send-pending', '/send-daily-summary', '/test-notification']
+  });
+});
+
 app.get('/health', (req, res) => {
   res.json({ 
     status: 'healthy', 
     timestamp: new Date().toISOString(),
-    service: 'LuWay Notification Server'
+    service: 'LuWay Notification Server',
+    firebase: firebaseInitialized ? 'connected' : 'demo-mode'
   });
 });
 
@@ -346,7 +353,7 @@ app.post('/test-notification', async (req, res) => {
     if (!messaging) {
       return res.status(500).json({
         success: false,
-        error: 'Messaging service not available'
+        error: 'Messaging service not available - Firebase not properly initialized'
       });
     }
 
@@ -391,10 +398,10 @@ app.post('/get-user-token', async (req, res) => {
       });
     }
 
-    if (!db) {
+    if (!firebaseInitialized || !db) {
       return res.status(500).json({
         success: false,
-        error: 'Database not available'
+        error: 'Firebase database not available'
       });
     }
 
@@ -440,10 +447,10 @@ app.post('/test-price-update', async (req, res) => {
       });
     }
 
-    if (!db) {
+    if (!firebaseInitialized || !db) {
       return res.status(500).json({
         success: false,
-        error: 'Database not available'
+        error: 'Firebase database not available'
       });
     }
 
@@ -540,14 +547,19 @@ cron.schedule('0 0 2 * * *', () => {
 app.listen(PORT, () => {
   console.log(`🚀 LuWay Notification Server running on port ${PORT}`);
   console.log(`📱 Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`🔔 Notification check interval: every 30 seconds`);
+  console.log(`� Firebase: ${firebaseInitialized ? 'Connected' : 'Demo Mode'}`);
+  console.log(`�🔔 Notification check interval: every 30 seconds`);
   console.log(`📊 Daily summary time: ${dailySummaryHour}:00`);
   console.log(`🧹 Old notifications cleanup: daily at 2:00 AM`);
   
-  // Send initial pending notifications
-  setTimeout(() => {
-    NotificationServer.sendPendingNotifications();
-  }, 5000);
+  // Send initial pending notifications only if Firebase is connected
+  if (firebaseInitialized) {
+    setTimeout(() => {
+      NotificationServer.sendPendingNotifications();
+    }, 5000);
+  } else {
+    console.log('⚠️ Running in demo mode - notifications disabled');
+  }
 });
 
 // Graceful shutdown
