@@ -547,8 +547,8 @@ cron.schedule('0 0 2 * * *', () => {
 app.listen(PORT, () => {
   console.log(`🚀 LuWay Notification Server running on port ${PORT}`);
   console.log(`📱 Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`� Firebase: ${firebaseInitialized ? 'Connected' : 'Demo Mode'}`);
-  console.log(`�🔔 Notification check interval: every 30 seconds`);
+  console.log(`🔥 Firebase: ${firebaseInitialized ? 'Connected' : 'Demo Mode'}`);
+  console.log(`🔔 Notification check interval: every 30 seconds`);
   console.log(`📊 Daily summary time: ${dailySummaryHour}:00`);
   console.log(`🧹 Old notifications cleanup: daily at 2:00 AM`);
   
