@@ -37,8 +37,16 @@ try {
   } else {
     console.log('🔍 Checking for service account file...');
     try {
-      serviceAccount = require('./service-account-key.json');
-      console.log('✅ Service account key found in file');
+      // Try current directory first, then server directory
+      let serviceAccountPath = './service-account-key.json';
+      try {
+        serviceAccount = require(serviceAccountPath);
+        console.log('✅ Service account key found in root directory');
+      } catch (e) {
+        serviceAccountPath = './server/service-account-key.json';
+        serviceAccount = require(serviceAccountPath);
+        console.log('✅ Service account key found in server directory');
+      }
     } catch (e) {
       console.warn('⚠️ No Firebase credentials found, running in demo mode');
       console.warn('Error:', e.message);
